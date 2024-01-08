@@ -110,7 +110,7 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <label for="Present_address" class="control-label col-sm-3 ">Local/Present Address :</label>
+                                        <label for="Present_address" class="control-label col-sm-3 small ">Local/Present Address:</label>
                                         <div class="row" name="Present_address">
                                               <div class="col-lg-2" id="hno"><input type="text" name="hno"  class="form-control " placeholder="House no." style="width:80%"></div>  
                                               <div class="col-lg-2 " id="street_name"> <input type="text" name="street"  class="form-control " placeholder="street name" style="width:80%" > </div>  
@@ -122,7 +122,7 @@
                                             </div>
                                     </div>
                                     <div class="col-md-12 mt-3">
-                                        <label for="Present_address" class="control-label col-sm-3 ">Permanent Address :</label>
+                                        <label for="Present_address" class="control-label col-sm-3 small ">Permanent Address:</label>
                                         <div class="row" name="Present_address">
                                               <div class="col-lg-2" id="p_hno"><input type="text" name="hno" class="form-control " placeholder="House no." style="width:80%"></div>  
                                               <div class="col-lg-2" id="p_street_name"> <input type="text" name="street"  class="form-control " placeholder="street name" style="width:80%" > </div>  
@@ -323,10 +323,10 @@
                         <section id="edetails" style="display:none">
                             
                             <div class="row mb-3">
-                                <h5 class="card-title text-center mb-4 ">SSC or Equivalent Level</h5>
+                                <h5 class="card-title text-center mb-4 fw-bold">SSC or Equivalent Level</h5>
 
                                 <div class="col-md-6">
-                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">Examination :</label>
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">Examination:</label>
                                     <select name="ssc_exam_type" id="ssc_exam_type" class="form-select " >
                                         <option selected disabled value="">Select</option>
                                         <option value="SSC">S.S.C</option>  
@@ -407,7 +407,7 @@
                                 <h5 class="card-title text-center mb-4 fw-bold">Intermediate or Equivalent Level</h5>
 
                                 <div class="col-md-6">
-                                    <label for="ssc_exam_type" class="control-label   small">Examination :</label>
+                                    <label for="ssc_exam_type" class="control-label   small">Examination:</label>
                                     <select name="ssc_exam_type" id="ssc_exam_type" class="form-select" >
                                         <option selected disabled value="">Select</option>
                                         <option value="SSC">Intermediate</option>  
@@ -515,7 +515,10 @@
     </div>
     <div class="col-md-6 mb-4">
         <label for="ssc_exam_type" class="control-label   small"> Phone Number:</label>
-        <input type="text" class="form-control" id="f_phone">
+        <div class="input-group">
+            <span class="input-group-text">+91</span>
+            <input type="text" class="form-control " id="f_phone" maxlength="10" >
+        </div>
     </div>
 </div>
 
@@ -540,7 +543,10 @@
     </div>
     <div class="col-md-6 mb-4">
         <label for="ssc_exam_type" class="control-label   small"> Phone Number:</label>
-        <input type="text" class="form-control" id="m_phone">
+        <div class="input-group">
+            <span class="input-group-text">+91</span>
+            <input type="text" class="form-control " id="m_phone" maxlength="10" >
+        </div>
     </div>
 </div>
 
@@ -564,7 +570,10 @@
     </div>
     <div class="col-md-6">
         <label for="ssc_exam_type" class="control-label   small"> Phone Number:</label>
-        <input type="text" class="form-control" id="g_phone" >
+        <div class="input-group">
+            <span class="input-group-text">+91</span>
+            <input type="text" class="form-control " id="g_phone" maxlength="10" >
+        </div>
     </div>
 </div>
 
@@ -879,10 +888,34 @@
         });
     }
     
+    function imagefilevalidator(inputId) {
+        const fileInput = document.getElementById(inputId);
+    
+        fileInput.addEventListener('change', function(event) {
+            const file = this.files[0]; // Get the uploaded file
+            maxSize = 100 * 1024; // 1 MB in bytes
+            let allowedTypes = ['image/jpeg', 'image/jpg', 'image/png']; // Allowed MIME types for images
+    
+    
+            if (file.size > maxSize) {
+                alert('File size exceeds ' + (maxSize / 1024) + ' KB. Please select a smaller file.');
+                this.value = ''; // Reset the file input
+                return;
+            }
+    
+            if (!allowedTypes.includes(file.type)) {
+                alert('Only jpg, jpeg, png files are allowed.');
+                this.value = ''; // Reset the file input
+                return;
+            }
+        });
+    }
+    imagefilevalidator('fileconstraint1');
+
     applyFileValidation('fileconstraint10');
 
     const fileInputIds = [
-        'fileconstraint1', 'fileconstraint2', 'fileconstraint3', 'fileconstraint4', 'fileconstraint5', 
+         'fileconstraint2', 'fileconstraint3', 'fileconstraint4', 'fileconstraint5', 
         'fileconstraint6', 'fileconstraint7', 'fileconstraint8', 'fileconstraint9', 'mergedfileconstraint', 'fileconstraint11'];
 
     applyFileValidation1('mergedfileconstraint');
