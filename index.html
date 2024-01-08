@@ -500,22 +500,22 @@
     <div class="col-md-6">
 
         <label for="ssc_exam_type" class="control-label   small">Full Name:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="f_name">
     </div>
     <div class="col-md-6">
         <label for="ssc_exam_type" class="control-label   small"> Qualification:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="f_qualification">
     </div>
 </div>
 
 <div class="row mb-3">
     <div class="col-md-6">
         <label for="ssc_exam_type" class="control-label   small"> Occupation:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="f_occupation">
     </div>
     <div class="col-md-6 mb-4">
         <label for="ssc_exam_type" class="control-label   small"> Phone Number:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="f_phone">
     </div>
 </div>
 
@@ -524,11 +524,11 @@
 
     <div class="col-md-6">
         <label for="ssc_exam_type" class="control-label   small">Full Name:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="m_name">
     </div>
     <div class="col-md-6">
         <label for="ssc_exam_type" class="control-label   small"> Qualification:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="m_qualification">
     </div>
 </div>
 
@@ -536,11 +536,11 @@
 
     <div class="col-md-6">
         <label for="ssc_exam_type" class="control-label   small"> Occupation:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="m_occupation">
     </div>
     <div class="col-md-6 mb-4">
         <label for="ssc_exam_type" class="control-label   small"> Phone Number:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="m_phone">
     </div>
 </div>
 
@@ -549,22 +549,22 @@
 
     <div class="col-md-6">
         <label for="ssc_exam_type" class="control-label   small">Full Name:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="g_name">
     </div>
     <div class="col-md-6">
         <label for="ssc_exam_type" class="control-label   small"> Qualification:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="g_qualification">
     </div>
 </div>
 
 <div class="row mb-3">
     <div class="col-md-6">
         <label for="ssc_exam_type" class="control-label   small"> Occupation:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control"  id="g_occupation">
     </div>
     <div class="col-md-6">
         <label for="ssc_exam_type" class="control-label   small"> Phone Number:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" id="g_phone" >
     </div>
 </div>
 
@@ -607,7 +607,7 @@
 <div class="row mb-3">
     <div class="col-md-4">
         <label for="ssc_exam_type" class="control-label   small">Test Date:</label>
-        <input type="date" class="form-control" id="test_date">
+        <input type="date" class="form-control" id="test_date" onchange="handleTestDate()">
     </div>
     <div class="col-md-4">
         <label for="ssc_exam_type" class="control-label   small">Rank Obtained:</label>
@@ -631,8 +631,6 @@
 </section>
 
 <section style="display:none" id="jeemains">
-
-
     <div class="row">
         <h5 class="card-title text-center mb-4 fw-bold">JEE MAINS Test Details</h5>
         <div class="col-md-6">
@@ -657,7 +655,7 @@
             <input type="number" class="form-control" id="j_rank_obtained"></div>
         <div class="col-md-4">
             <label for="ssc_exam_type" class="control-label   small">Rank Card:</label>
-            <input type="file" class="form-control" id="fileconstraint9" >
+            <input type="file" class="form-control" id="fileconstraint11" >
             <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
         </div>
     </div>
@@ -673,7 +671,7 @@
     </div>
 
     <div class="col-2 text-center" id="sb" style="display:none;">
-        <input type="submit" class="btn btn-primary ps-3 pe-3" value="submit" onclick="submitForm()">
+        <input type="submit" class="btn btn-primary ps-3 pe-3" value="submit" onclick="validateForm(event)">
     </div>
 
     <div class="col-5 text-end ms-auto" id="nxt">
@@ -756,11 +754,57 @@
     }
     
     function nextSection() {
-        if (currentSection < sections.length - 1) {
-            if (validateFieldsInSection(currentSection)) {
-                showSection(currentSection + 1);
+        if(sections[currentSection]=='pdetails'){
+
+            if(parentdetailsfilled()){
+
+                if (currentSection < sections.length - 1) {
+                    if (validateFieldsInSection(currentSection)) {
+                        showSection(currentSection + 1);
+                    }
+                }
+            }
+            else{
+                alert("Please fill in at least one set of parent/guardian details");
             }
         }
+        else{
+            if (currentSection < sections.length - 1) {
+                if (validateFieldsInSection(currentSection)) {
+                    showSection(currentSection + 1);
+                }
+            }
+
+        }
+    }
+    function parentdetailsfilled(){
+        F_name=document.getElementById('f_name').value;
+        F_qualification=document.getElementById('f_qualification').value;
+        F_occupation=document.getElementById('f_occupation').value;
+        F_phone=document.getElementById('f_phone').value;
+
+        M_name=document.getElementById('m_name').value;
+        M_qualification=document.getElementById('m_qualification').value;
+        M_occupation=document.getElementById('m_occupation').value;
+        M_phone=document.getElementById('m_phone').value;
+
+        G_name=document.getElementById('g_name').value;
+        G_qualification=document.getElementById('g_occupation').value;
+        G_occupation=document.getElementById('g_occupation').value;
+        G_phone=document.getElementById('g_phone').value;
+
+        const father_details = F_name !== '' && F_qualification !== '' && F_occupation !== '' && F_phone !== '';
+        const mother_details = M_name !== '' && M_qualification !== '' && M_occupation !== '' && M_phone !== '';
+        const guardian_details = G_name !== '' && G_qualification !== '' && G_occupation !== '' && G_phone !== '';
+
+        if (!father_details && !mother_details && !guardian_details) {
+            return false;
+        }
+        else{
+            return true;
+        }
+
+
     }
     
     function previousSection() {
@@ -839,7 +883,7 @@
 
     const fileInputIds = [
         'fileconstraint1', 'fileconstraint2', 'fileconstraint3', 'fileconstraint4', 'fileconstraint5', 
-        'fileconstraint6', 'fileconstraint7', 'fileconstraint8', 'fileconstraint9', 'mergedfileconstraint'];
+        'fileconstraint6', 'fileconstraint7', 'fileconstraint8', 'fileconstraint9', 'mergedfileconstraint', 'fileconstraint11'];
 
     applyFileValidation1('mergedfileconstraint');
     // Apply file size validation to multiple file input fields by iterating through the IDs
@@ -885,10 +929,44 @@
     });*/
     
    
-
-
+    function handleTestDate() {
+        const testDateInput = document.getElementById('test_date');
+        const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+        
+        if (testDateInput.value === '' || testDateInput.value === currentDate) {
+            testDateInput.value = 'NA'; // Replace test date with 'NA' if it's empty or matches the current date
+        }
+    }
     
 
+    
+    function validateForm(event) {
+        event.preventDefault(); // Prevent form submission for now
+    
+        const entranceTestName = document.getElementById('test_name').value;
+        const hallTicketNumber = document.getElementById('hall_ticket_number').value;
+        const testDate = document.getElementById('test_date').value;
+        const rankObtained = document.getElementById('rank_obtained').value;
+        const fileUpload = document.getElementById('fileconstraint9').value;
+
+        const J_entranceTestName = document.getElementById('j_test_name').value;
+        const J_hallTicketNumber = document.getElementById('j_hall_ticket_number').value;
+        const J_testDate = document.getElementById('j_test_date').value;
+        const J_rankObtained = document.getElementById('j_rank_obtained').value;
+        const J_fileUpload = document.getElementById('fileconstraint11').value;
+
+        const entranceTestDetailsFilled = entranceTestName !== '' && hallTicketNumber !== '' && testDate !== '' && rankObtained !== '' && fileUpload !== '';
+        const jeeTestDetailsFilled = J_entranceTestName !== '' && J_hallTicketNumber !== '' && J_testDate !== '' && J_rankObtained !== '' && J_fileUpload !== '';
+    
+    
+        if (!entranceTestDetailsFilled && !jeeTestDetailsFilled) {
+            alert('Please fill in at least one set of test details.');
+            return;
+        }
+    
+        // If the form has at least one set of test details filled, submit the form
+        document.getElementById('ADM_form').submit();
+    }
 </script>
                        
 
