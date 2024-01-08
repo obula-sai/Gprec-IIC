@@ -19,12 +19,7 @@
     
         @media only screen and (max-width: 767px) {
             .img-thumbnail {
-                width: 200px; /* Adjust this value for mobile devices */
-
-
-            
-
-
+                width: 200px; }
             #hno,#street_name,#village,#district,#state,#pincode{
                 display:flex;
                 justify-content:center;
@@ -45,7 +40,6 @@
             }
         }
     
-        /* Add more media queries for other screen sizes if needed */
 
         label{
             font-weight:bold;
@@ -75,7 +69,7 @@
                                     <h5 class="card-title text-center mb-4 fw-bold">Student Details</h5>
 
                                     <div class="col-md-4">
-                                        <label for="firstName" class="form-label small ">Student Name:</label>
+                                        <label for="firstName" class="form-label small">Student Name:</label>
                                         <input type="text" class="form-control required" id="firstName" placeholder="First Name"  >
                                     </div>
                                     <div class="col-md-4">
@@ -261,7 +255,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="ph" class="form-label small ">Physically Handicapped Proof:</label>
-                                        <input type="file" class="form-control" name="ph" id="" accept=".pdf">
+                                        <input type="file" class="form-control" name="ph" id="fileconstraint10" >
                                         <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
 
                                     </div>
@@ -620,9 +614,10 @@
         <input type="number" class="form-control" id="rank_obtained">
     </div>
     <div class="col-md-4 mb-4">
-        <label for="ssc_exam_type" class="control-label   small">Rank Card:</label>
-        <input type="file" class="form-control" id="rank_card" id="fileconstraint8">
-        <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
+        <label for="fileconstraint9">Upload a file (Enter 'NA' if not applicable):</label>
+        <input type="file" class="form-control" id="fileconstraint9" placeholder="NA" >
+        
+        <small class="form-text text-muted">File should be less than 1000 KB and in PDF format only.</small>
 
     </div>
 
@@ -849,14 +844,14 @@
     applyFileValidation1('mergedfileconstraint');
     // Apply file size validation to multiple file input fields by iterating through the IDs
     fileInputIds.forEach(function(id) {
-        applyFileValidation(id);
+        applyFileValidation(id);    
     });
 
 
 
 
 
-    const form = document.getElementById('ADM_form');
+    /*const form = document.getElementById('ADM_form');
 
     form.addEventListener('submit', function(event) {
         const test_name = document.getElementById('test_name').value;
@@ -887,7 +882,7 @@
                 return false;
             }
         }
-    });
+    });*/
     
    
 
