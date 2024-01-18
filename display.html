@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <!-- Add this before your existing styles and scripts -->
+<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.rtl.min.css' %}">
+    <style>
+
+
+#student_undertaking_page>li{
+    margin-bottom:10px;
+
+}
+
+    @media screen and (max-width: 600px) {
+
+
+        }
+
+    @media screen and (min-width: 601px) {
+
+        #cf{
+            padding:50px;
+            border:1px solid black;
+        }
+        
+            /* Additional desktop-specific styles go here */
+    }
+
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    #E_B{
+        border:1px solid black;
+        text-align:center;
+    }
+    body {
+        font-size: 16px;
+    }
+
+    @media only screen and (max-width: 768px) {
+        /* Add specific styles for smaller screens here */
+        body {
+            font-size: 14px;
+        }
+        .container-fluid {
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        #E_B {
+            font-size: 14px;
+        }
+    }
+
+
+    .container-fluid {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+
+
+    @media print{
+        .container-fluid {
+            padding:0.5%;
+        }
+
+        #cf {
+            padding: 0;
+            border: none;  /* Remove the border */
+            margin: 0 auto; 
+        }
+        #DAP{
+            display:none;
+        }
+
+    }
+
+
+ 
+
+    
+
+    
+    
+    
+    
+</style>
+</head>
+<body>
+
+
+    
+    <div class="container-fluid">
+        <div style="" id="cf">
+        <img src="{% static 'media/gprec_logo1.png' %}" alt="image version not supported" height="50px" width="400px" >
+
+        <div class=" text-center" style="margin-bottom:10px">-- B.Tech Registration Form --</div>
+
+    <span class="border d-flex justify-content-center align-items-center text-center" style="height:2in;width:2in;float:right;margin:20px">
+        attach your photograph
+    </span>
+
+
+<br>
+<table style="margin-top:5px;">
+    <tr>
+        <th colspan="2"><h4>Student Details</h4>
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th ></th>
+    </tr>
+
+    <tr>
+        <th>Student name:</td>
+        <td>Dwayne Johnson</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    
+    <tr>
+        <th>DOB:</td>
+        <td>Dwayne Johnson</td>
+        <td></td>
+        <th>Gender:</td>
+        <td>Male</td>
+    </tr>
+
+    <tr>
+        <th>Aadhar Number:</td>
+        <td>Dwayne Johnson</td>
+        <td></td>
+        <th>Branch:</td>
+        <td>Male</td>
+    </tr>
+    
+
+    <tr>
+        <th>Phone Number:</td>
+        <td>Dwayne Johnson</td>
+        <td></td>
+        <th>Email ID:</td>
+        <td>Male</td>
+    </tr>
+</table>
+
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+            <tr>
+                <th>Local Address:</th>
+                <td colspan="7" style="border:1.4px solid black;width:75%;"> </td>            
+            </tr>
+            <tr style="height:10px;" colspan="8"></tr>
+
+            <tr>
+                <th>Permanent Address:</th>
+                <td colspan="7"style="border:1.4px solid black;width:75%"> </td>            
+            </tr>
+
+
+        </table>
+
+
+
+       
+<table>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    <tr>
+                <th>Religion:</th>
+                <td>Hindu</td>
+                <td></td>
+                <th>Caste:</th>
+                <td>Male</td>
+                <td></td>
+                <th>Reservation Category:</th>
+                <td>Male</td>
+    </tr>  
+
+    <tr>
+        <th>Blood Group:</th>
+        <td>Hindu</td>
+        <td></td>
+        <th>Category:</th>
+        <td>Male</td>
+        <td></td>
+        <th>Alloted Category:</th>
+        <td>Male</td>
+</tr>  
+
+<tr>
+    <th>Handicapped Status:</th>
+    <td colspan="7">Yes</td>
+</tr>  
+
+
+ <tr>
+<th colspan="3"> <h4>Parent Details</h4></th>   
+<td></td> 
+<td></td> 
+<td></td> 
+<td></td> 
+<td></td> 
+
+</tr>
+
+<tr>
+    <th>Father name:</th>
+    <td colspan="7">obula sai mochi</td>
+    <td></td>
+</tr>
+<tr>
+    <th>QualificAation:</th>
+    <td>B.Tech</td>
+<td></td>
+<th>Occupation:</th>
+<td>software engineer</td>
+<td></td>  
+    <th> Phone Number:</th>
+    <td>Dwayne Johnson</td>
+<td></td>
+</tr> 
+
+<tr>
+    <th>Mother name:</th>
+    <td colspan="7">obula sai mochi</td>
+    <td></td>
+</tr>
+<tr>
+    <th>QualificAation:</th>
+    <td>B.Tech</td>
+<td></td>
+<th>Occupation:</th>
+<td>software engineer</td>
+<td></td>  
+    <th> Phone Number:</th>
+    <td>Dwayne Johnson</td>
+<td></td>
+</tr> 
+
+<tr>
+    <th>Guardian name:</th>
+    <td colspan="7">obula sai mochi</td>
+    <td></td>
+</tr>
+<tr>
+    <th>QualificAation:</th>
+    <td>B.Tech</td>
+<td></td>
+<th>Occupation:</th>
+<td>software engineer</td>
+<td></td>  
+    <th> Phone Number:</th>
+    <td>Dwayne Johnson</td>
+<td></td>
+</tr> 
+
+
+<tr>
+    <th>Parent Email:</th>
+    <td colspan="7">obulasaimochi@gmail.com</td>
+</tr>
+
+<tr style="height:10px;"></tr>
+
+
+
+
+
+<tr>
+    <th colspan="4"><h4>Educational Details</h4></th>
+</tr>
+
+<tr >
+
+    <th colspan="8" ><h5 style="text-align:center;">Acadamic performance</h5></th>
+
+</tr>
+
+
+<tr>
+    <table id="E_B" style="width:100%" class="tables_selector">
+        <tr id="E_B">
+            <th id="E_B">Course</th>
+            <th id="E_B">Board</th>
+            <th id="E_B">Marks Obtained</th>
+            <th id="E_B">Total Marks</th>
+            <th id="E_B">percentage</th>
+            <th id="E_B">CGPA</th>
+            <th id="E_B">Month & Year of passing</th>
+        </tr>
+
+        <tr id="E_B">
+            <th id="E_B">S.S.C / X Class</th>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+
+        </tr>
+        <tr id="E_B">
+            <th id="E_B">Intermediate / Diploma</th>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+
+        </tr>   
+
+
+    
+    </table>
+</tr>
+<tr ><td colspan="8">.</td></tr>
+
+<tr>
+
+    <th colspan="8" ><h5 style="text-align:center;">Institute Details</h5></th>
+
+</tr>
+
+
+<tr>
+    <table id="E_B" style="width:100%" class="tables_selector">
+        <tr id="E_B">
+            <th id="E_B">Course</th>
+            <th id="E_B">Roll Number</th>
+            <th id="E_B">PC Number</th>
+            <th id="E_B">Branch</th>
+            <th id="E_B">YOP</th>
+            <th id="E_B">Name & Place of the Institude where studied</th>
+        </tr>
+
+        <tr id="E_B">
+            <th id="E_B">S.S.C / X Class</th>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+
+        </tr>
+        <tr id="E_B">
+            <th id="E_B">Intermediate / Diploma</th>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+
+        </tr>   
+    </table>
+</tr>
+<tr>.</tr>
+<tr>
+
+    <th colspan="8" ><h5 style="text-align:center;">Test Details</h5></th>
+
+</tr>
+
+
+<tr>
+    <table id="E_B" style="width:100%" class="tables_selector">
+        <tr id="E_B">
+            <th id="E_B">Test Name</th>
+            <th id="E_B">Hall Ticket Number</th>
+            <th id="E_B">Test Date</th>
+            <th id="E_B">Rank Obtained</th>
+        </tr>
+
+        <tr id="E_B">
+            <th id="E_B">A.P ECET</th>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+
+
+        </tr>
+        <tr id="E_B">
+            <th id="E_B">Jee Mains</th>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+            <td id="E_B"></td>
+
+
+        </tr>   
+    </table>
+</tr>
+</table>
+<div style="margin-top:13%">
+        <h5 style="text-align:center">Declaration</h5>
+        <p style="margin-left:100px;display:inline;">  We declare that</p> <p style="display:inline;"> all the foregoing statements made in this application are true. We accept that any statement made in this application, if found incorrect on scrutiny, will render the application liable for rejection, and cancellation of admission, If granted on the basis of such incorrect information.
+        </p>
+</div>
+
+
+<div style="display: flex; justify-content: space-between;margin-top:5%">
+    <div>
+    <div style="float: left; border: 1px solid black; width: 180px; height: 50px;"></div>
+    <p style="text-align:center;font-weight:bold;">Date</p>
+    </div>
+    
+    <div>
+    <div style="display: flex; justify-content: center; align-items: center; border: 1.5px solid black; width: 180px;height: 50px;"></div>
+    <p style="text-align:center;font-weight:bold;">Student Signature</p>
+</div>
+
+    <div>
+    <span style="float: right; border: 1px solid black; width: 180px; height: 50px;"></span>
+    <p style="text-align:center;font-weight:bold;">Parent Signature</p>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section style="margin-top:10%;padding:10px;">
+    <div>
+        <h6 style="text-align:center;">G.PULLA REDDY ENGINEERING COLLEGE (Autonomous): KURNOOL</h6>
+        <h6 style="text-align:center;"><u>INSTRUCTIONS TO THE CANDIDATES</u></h6>
+    </div>
+
+
+    <ol>
+        <li>Candidates who have passed two year Intermediate Examination conducted by Bos Intermediate Education, A.P. or its equivalent as prescribed by APSCHE.</li>
+    
+        <li>Interested candidates can submit the filled-in-application form along with all enclosures and Registration fee of Rs.1,000/- (non-refundable) either in cash or in the form of DD in favour o G.Pulla Reddy Engineering College, Kurnool on all working days on or before_____________.</li>
+        
+        <li>The Selection of Candidates for category-B seats will be as per the procedure decided by the Govt. of A.P. The branch allotted to the students will be based on the options given by the candidates in the application form. Branch allotted cannot be changed.</li>
+        <li>At the time of admission, the candidates are required to pay the Tuition Fee and other Miscellaneous Fee. Fee once paid will not be refunded under any circumstances.</li>
+        <li>Candidates admitted under Category -B seats are not eligible for any kind of Government Scholarships</li>
+        <li>If the fee is not paid on or before the due date, admission will be cancelled.</li>
+        <li>The following Original Certificates are to be submitted at the time of admission
+            <ol type="a">
+                <li>SSC or equivalent examination marks memo.</li>
+                <li>Intermediate or equivalent examination marks memo(s)</li>
+                <li>Study Certificate (6th Class to Intermediate)</li>
+                <li>Transfer Certificate (TC)</li>
+                <li>JEE (Main) - 2023 Hall Ticket & Rank Card (if appeared)</li>
+                <li>AP EAPCET-2023 Hall Ticket & Rank Card (if appeared)</li>
+                <li>Copy of Caste Certificate in case of SC/ST/OBC</li>
+                <li>Copy of Aadhaar Card</li>
+                <li>Three(3) sets of Xerox copies of all the above certificates</li>
+                <li>Passport Size Photos - 4</li>
+                <li>Copy of Parent's PAN Card</li>
+                <li>Equivalency Certificate from Board of Intermediate Education, AP for other State Boards / Universities / Schools</li>
+                <li>Residence certificate for Non-local students</li>
+            </ol>
+            <b>(Please keep the scanned copies of original Certificates before submission for future use)</b>
+        </li>
+        <li>An undertaking in the prescribed format should be submitted by the Parent and Student with respect to the fee to be paid to the college.</li>
+        <li>These admissions are subject to the approval of Andhra Pradesh State Council of Higher Education.</li>
+        <li>In the event of the management finding that any of the selected candidates is not eligible for admission, the Management shall be at liberty to reject the candidature</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ol>
+</section>
+
+
+<section style="margin-top:30%;">
+    <div style="border:1.5px solid black;padding:20px;">
+    <div>
+        <h4 style="text-align:center;">UNDERTAKING BY THE CANDIDATE/STUDENT</h4>
+    </div>
+
+    <ol id="student_undertaking_page" style="margin-top:10%;margin-bottom:20%"> 
+        <li>I,_____________________ S/o D/o of Mr/Ms_____________________
+            have carefully read and fully understood the law prohibiting ragging and the directions of the Supreme Court and the Central/State Government in this regard.</li>
+        <li>I have received a copy of UGC Regulations on Curbing the Menace of Ragging in Higher Educational Institutions, 2009 and have carefully gone through it</li>
+        <li>I hereby undertake that
+            <ul>
+                <li>I will not indulge in any behaviour or act that may come under the definition of ragging</li>
+                <li>I Will not participate in or abet or propagate ragging in form</li>
+                <li>I will not hurt anyone physically or psychologically or cause any other harm</li>
+            </ul>
+        </li>
+        <li>I hereby agree that if found guilty of any aspect of ragging, I may be punished as per the
+            provisions of the UGC Regulations mentioned above and/or as per the law in force</li>
+        <li>I hereby affirm that I have not been expelled or debarred from admissions by any institution.</li>
+    </ol>
+
+    <div style="margin-top:10%;margin-bottom:25%">
+        <p style="text-align:center;">Signed this _______________ day of _______________month of _______________ year</p>
+        <h6 style="text-align:end;margin-top:20%;margin-right:5%;">Signature of the Student</h6>
+    </div>
+
+
+</div>
+
+</section>
+
+
+<section style="margin-top:30%;margin-bottom:20%">
+    <div style="border:1.5px solid black;padding:20px;">
+    <div>
+        <h4 style="text-align:center;">UNDERTAKING BY THE PARENT/GUARDIAN</h4>
+    </div>
+
+    <ol id="student_undertaking_page" style="margin-top:10%;margin-bottom:20%"> 
+        <li>I,_____________________ F/o. M/o. G/o _____________________
+            have carefully read and fully understood the law prohibiting ragging and the directions of the Supreme Court and the Central / State Government in this regard as well as the UGC Regulations on Curbing the Menace of Ragging in Higher Educational Institutions, 2009.</li>
+        <li>I assure you that my son/daughter/ward will not indulge in any act of ragging.</li>
+        <li>I hereby agree that if he/she found guilty of any aspect of ragging, he/she may be punished as per the provisions of the UGC Regulations mentioned above and/or as per the law in force
+        </li>
+        <li>I hereby agree that if found guilty of any aspect of ragging, I may be punished as per the
+            provisions of the UGC Regulations mentioned above and/or as per the law in force</li>
+        <li>I hereby affirm that I have not been expelled or debarred from admissions by any institution.</li>
+    </ol>
+
+    <div style="margin-top:10%;margin-bottom:25%">
+        <p style="text-align:center;">Signed this _______________ day of _______________month of _______________ year</p>
+        <h6 style="text-align:end;margin-top:20%;margin-right:5%;">Signature of the Parent / Guardian</h6>
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<sectio style="margin-top:40%;">
+    <div style="border:1.5px solid black;padding:20px;">
+
+    <div style="text-align:center;">
+        <h5 >UNDERTAKING</h5>
+        <h5>(For B-Category/SPOT Admission into B.Tech course)</h5>
+        <h6 style="text-align:end;margin-top:5% ">Date: ________________</h6>
+    </div>
+    <div style="text-align:left;margin-top:10%">
+        <h6>To,</h6>
+        <h6>The Principal,</h6>
+        <h6>G.Pulla Reddy Engineering College (Autonomous),</h6>
+        <h6>Kurnool-518 007.</h6>
+        <h6 style="margin-top:5%;">Dear Sir,</h6>
+    </div>
+
+    <div style="text-align:center;">
+        <b>Sub:-</b> Undertaking with respect to the fees to be paid to the college
+    </div>
+
+    <div>
+        I, Mr/Ms._______________________________________________________________________________(the student) and We Mr/Ms.________________________________________________________ (Parent/Guardian) residing at ________________________________________________ the former having been admitted to the I Yr. B.Tech course in ___________________________ branch for the academic year 2023-24 at your institute, under B-Category (JEE Main/EAPCET-2023/Intermediate) hereby undertaking to abide by the following.
+    </div>
+</div>
+</section>
+
+
+
+
+
+
+<div class="d-flex justify-content-center">
+<button onclick="window.print()" style="margin-top:20px;" id="DAP">Download as PDF</button>
+</div>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <script src="{% static 'js/bootstrap.js' %}" ></script>
+            <script src="{% static 'js/bootstrap.min.js' %}" ></script>
+            <script src="{% static 'js/bootstrap.bundle.js' %}" ></script>
+            <script src="{% static 'js/bootstrap.bundle.min.js' %}" ></script>
+            <script src="{% static 'js/bootstrap.esm.js' %}" ></script>
+            <script src="{% static 'js/bootstrap.esm.min.js' %}" ></script>
+</body>
+</html>
