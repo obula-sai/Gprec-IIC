@@ -2,7 +2,6 @@
 <html lang="en">
     {% load static %}
     <head>
-        <!-- Add this before your existing styles and scripts -->
 <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 
         <meta charset="UTF-8">
@@ -54,7 +53,7 @@
     }
 
     #E_B{
-        border:1px solid black;
+        border:1.5  px solid black;
         text-align:center;
     }
     body {
@@ -101,13 +100,15 @@
         }
 
     }
-
-
+    
+    
+    section {
+        page-break-before: always;
+     }
  
 
     
 
-    
     
     
     
@@ -117,8 +118,8 @@
 
 
     
-    <div class="container-fluid">
-<section>
+<div class="container-fluid">
+    <div>
         <div style="" id="cf">
         <img src="{% static 'media/gprec_logo1.png' %}" alt="image version not supported" height="50px" width="400px" >
 
@@ -203,7 +204,7 @@
 
        
     <table>
-    <tr>
+     <tr>
         <th></th>
         <th></th>
         <th></th>
@@ -212,7 +213,7 @@
         <th></th>
         <th></th>
         <th></th>
-    </tr>
+    </tr> 
 
     <tr>
                 <th>Religion:</th>
@@ -309,9 +310,9 @@
         <td colspan="7">obulasaimochi@gmail.com</td>
     </tr>
 
-    <tr style="height:10px;"></tr>
-
-</section>
+</table>
+</div>
+</div>
 
 <section>
 
@@ -430,8 +431,6 @@
             <td id="E_B"></td>
             <td id="E_B"></td>
             <td id="E_B"></td>
-
-
         </tr>   
     </table>
     </tr>
@@ -443,7 +442,7 @@
     </div>
 
 
-    <div style="display: flex; justify-content: space-between;margin-top:10%">
+    <div style="display: flex; justify-content: space-between;margin-top:15%;">
         <div>
         <div style="float: left; border: 1px solid black; width: 180px; height: 50px;"></div>
         <p style="text-align:center;font-weight:bold;">Date</p>
@@ -462,7 +461,7 @@
     </div>
 </section>
 
-<section style="margin-top:13%;padding:10px;">
+<section style="padding:10px;">
     <div style="border:1.5px solid black;padding:1.5%;padding-bottom:3%">
     <div style="margin-top:1%;margin-bottom:2%">
         <h6 style="text-align:center;">G.PULLA REDDY ENGINEERING COLLEGE (Autonomous): KURNOOL</h6>
@@ -477,7 +476,7 @@
         
         <li>The Selection of Candidates for category-B seats will be as per the procedure decided by the Govt. of A.P. The branch allotted to the students will be based on the options given by the candidates in the application form. Branch allotted cannot be changed.</li>
         <li>At the time of admission, the candidates are required to pay the Tuition Fee and other Miscellaneous Fee. Fee once paid will not be refunded under any circumstances.</li>
-        <li>Candidates admitted under Category -B seats are not eligible for any kind of Government Scholarships</li>
+        <li>Candidates admitted under Category-B seats are not eligible for any kind of Government Scholarships</li>
         <li>If the fee is not paid on or before the due date, admission will be cancelled.</li>
         <li>The following Original Certificates are to be submitted at the time of admission
             <ol type="a">
@@ -485,8 +484,8 @@
                 <li>Intermediate or equivalent examination marks memo(s)</li>
                 <li>Study Certificate (6th Class to Intermediate)</li>
                 <li>Transfer Certificate (TC)</li>
-                <li>JEE (Main) - 2023 Hall Ticket & Rank Card (if appeared)</li>
-                <li>AP EAPCET-2023 Hall Ticket & Rank Card (if appeared)</li>
+                <li>JEE (Main) -  Hall Ticket & Rank Card (if appeared)</li>
+                <li>AP EAPCET - Hall Ticket & Rank Card (if appeared)</li>
                 <li>Copy of Caste Certificate in case of SC/ST/OBC</li>
                 <li>Copy of Aadhaar Card</li>
                 <li>Three(3) sets of Xerox copies of all the above certificates</li>
@@ -522,7 +521,7 @@
 </section>
 
 
-<section style="margin-top:30%;">
+<section style="">
     <div style="border:1.5px solid black;padding:20px;">
     <div>
         <h4 style="text-align:center;">UNDERTAKING BY THE CANDIDATE/STUDENT</h4>
@@ -550,12 +549,12 @@
     </div>
 
 
+    
 </div>
-
 </section>
 
 
-<section style="margin-top:30%;margin-bottom:20%">
+<section style="">
     <div style="border:1.5px solid black;padding:20px;">
     <div>
         <h4 style="text-align:center;">UNDERTAKING BY THE PARENT/GUARDIAN</h4>
@@ -584,7 +583,7 @@
 
 
 
-<section style="margin-top:40%;">
+<section style="">
     <div style="border:1.5px solid black;padding:20px;">
 
     <div style="text-align:center;">
@@ -605,7 +604,7 @@
     </div>
 
     <div>
-        I, Mr/Ms.__________________________________________________________________________ (the student) and We Mr/Ms._____________________________________________ (Parent/Guardian) residing at ________________________________________________ the former having been admitted to the I Yr. B.Tech course in ___________________________ branch for the academic year 2023-24 at your institute, under B-Category (JEE Main/EAPCET-2023/Intermediate) hereby undertaking to abide by the following.
+        I, Mr/Ms.__________________________________________________________________________ (the student) and We Mr/Ms._____________________________________________ (Parent/Guardian) residing at ________________________________________________ the former having been admitted to the I Yr. B.Tech course in ___________________________ branch for the academic _____________ at your institute, under B-Category (JEE Main/EAPCET/Intermediate) hereby undertaking to abide by the following.
     </div>
 
     <ol>
@@ -632,7 +631,7 @@
     </div>
     
 
-    <div style="display: flex; justify-content: space-between;margin-top:20%">
+    <div style="display: flex; justify-content: space-between;margin-top:25%">
         <div>
         <div style="float: left;"> ___________________________________</div>
         <p style="text-align:center;font-weight:bold;">(Signature of Parent/Guardian)</p>
@@ -667,6 +666,12 @@
 
 </div>
 
+<p id="dimensions"></p>
+
+<script>
+    // Update the content of the element with the ID "dimensions"
+    document.getElementById("dimensions").innerHTML = "Window Height: " + window.innerHeight + "<br>Window Width: " + window.innerWidth;
+</script>
             <script src="{% static 'js/bootstrap.js' %}" ></script>
             <script src="{% static 'js/bootstrap.min.js' %}" ></script>
             <script src="{% static 'js/bootstrap.bundle.js' %}" ></script>
