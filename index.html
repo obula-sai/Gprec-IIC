@@ -66,8 +66,6 @@
 </head>
 <body class="bg-light"> 
 
-<button onload="sample()">click here...</button>
-
     <div class="container mt-2 ">
         <a href="#"><img src="../media/images-removebg-preview.png" alt="img/TopHeader.jpg" class="img-thumbnail bg-light border-light" width="200px"></a>
     </div>
@@ -103,17 +101,19 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <label for="adharNumber" class="form-label small">Aadhar Number:</label>
-                                        <input type="text" class="form-control  " id="adharNumber" maxlength="12" name="aadhar_number">
+                                        <label for="aadharNumber" class="form-label small">Aadhar Number:</label>
+                                        <input type="text" class="form-control required" id="aadharNumber" maxlength="12" name="aadhar_number" oninput="validateAadharNumber(this)">
+                                        <small id="aadharError" class="text-danger"></small>
                                     </div>
+                                
                                     <div class="col-md-6">
-                                        
-                                        <label for="mobileNumber" class="form-label small ">Mobile Number:</label>
+                                        <label for="mobileNumber" class="form-label small">Mobile Number:</label>
                                         <div class="input-group">
                                             <span class="input-group-text">+91</span>
-                                            <input type="text" class="form-control " id="mobile" maxlength="10" name="mobile_number" >
+                                            <input type="text" class="form-control required" id="mobile" maxlength="10" name="mobile_number" onkeypress="validateMobileNumber(this)">
                                         </div>
-                                                                            </div>
+                                        <small id="mobileError" class="text-danger"></small>
+                                    </div>
                                 </div>
 
                                 <div class="row mb-3">
@@ -534,11 +534,12 @@
     </div>
     
     <div class="col-md-6 mb-4">
-        <label for="ssc_exam_type" class="control-label small"> Phone Number:</label>
+        <label for="fatherMobileNumber" class="form-label small"> Phone Number:</label>
         <div class="input-group">
             <span class="input-group-text">+91</span>
-            <input type="text" class="form-control" id="f_phone" maxlength="10" name="father_phone">
+            <input type="text" class="form-control" id="f_phone" maxlength="10" name="father_phone" oninput="validateMobileNumber(this)">
         </div>
+        <small id="fatherMobileError" class="text-danger"></small>
     </div>
 </div>
 
@@ -562,11 +563,12 @@
         <input type="text" class="form-control" id="m_occupation" name="mother_occupation">
     </div>
     <div class="col-md-6 mb-4">
-        <label for="ssc_exam_type" class="control-label   small"> Phone Number:</label>
+        <label for="motherMobileNumber" class="form-label small">Phone Number:</label>
         <div class="input-group">
             <span class="input-group-text">+91</span>
-            <input type="text" class="form-control " id="m_phone" maxlength="10" name="mother_phone">
+            <input type="text" class="form-control" id="m_phone" maxlength="10" name="mother_phone" oninput="validateMobileNumber(this)">
         </div>
+        <small id="motherMobileError" class="text-danger"></small>
     </div>
 </div>
 
@@ -589,11 +591,12 @@
         <input type="text" class="form-control"  id="g_occupation" name="guardian_occupation">
     </div>
     <div class="col-md-6">
-        <label for="ssc_exam_type" class="control-label   small"> Phone Number:</label>
+        <label for="guardianMobileNumber" class="form-label small">Phone Number:</label>
         <div class="input-group">
             <span class="input-group-text">+91</span>
-            <input type="text" class="form-control " id="g_phone" maxlength="10" name="guardian_phone" >
+            <input type="text" class="form-control" id="g_phone" maxlength="10" name="guardian_phone" oninput="validateMobileNumber(this)">
         </div>
+        <small id="guardianMobileError" class="text-danger"></small>
     </div>
 </div>
 
@@ -616,7 +619,7 @@
 
     <div class="col-md-6 ">
         <label for="ssc_exam_type" class="control-label   small">Test Name:</label>
-        <select name="e_test_name" id="test_name" class="form-select" required>
+        <select name="e_test_name" id="test_name" class="form-select">
             <option selected disabled value="">Select</option>
             <option value="A.P EAMCET">A.P EAMCET</option>  
             <option value="A.P ECET">A.P ECET</option>
@@ -733,11 +736,7 @@
 
 
 
-<script>
-    function sample(){
-        window.print();
-    }
-</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script>
     const sections = ['sdetails', 'edetails', 'pdetails', 'cetdetails'];
@@ -788,6 +787,45 @@
         }
     }
 
+
+
+    function validateMobileNumber(input) {
+        var mobileNumber = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+        var mobileError = input.parentNode.nextElementSibling; // Get the next sibling (small element) after the parent node
+
+        if (mobileNumber.length !== 10) {
+            mobileError.textContent = 'Mobile number must be 10 digitssssssssssss';
+            return false;
+        } else {
+            mobileError.textContent = '';
+            return true;
+        }
+    }
+    function validateMobileNumber1(input) {
+       
+        var mobileNumber = input.replace(/\D/g, ''); // Remove non-numeric characters
+
+        if (mobileNumber.length !== 10) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    function validateAadharNumber(input) {
+            var aadharNumber = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+            var aadharError = document.getElementById('aadharError');
+
+            if (aadharNumber.length !== 12) {
+                aadharError.textContent = 'Aadhar number must be 12 digits';
+                return false;
+            } else {
+                aadharError.textContent = '';
+                return true;
+            }
+        }
+
+
+
 let ph_status_variable = false;
 
 function updateStatus(value) {
@@ -800,37 +838,53 @@ function updateStatus(value) {
 
 
    function nextSection() {
-        if(ph_status_variable==true){
-            alert("please upload PH document");
-        }
-        else{
+    const aadharValid = validateAadharNumber(document.getElementById('aadharNumber'));
+    const userMobileValid = validateMobileNumber(document.getElementById('mobile'));
+    
+    if (ph_status_variable == true) {
+        alert("Please upload PH document");
+    } else {
+        // Check if the current section is 'pdetails'
+        if (sections[currentSection] == 'pdetails') {
+            // Check if parent details are filled
+            if (parentdetailsfilled()) {
+                // Proceed to the next section if validations pass
+                F_phone=document.getElementById('f_phone').value;
+                M_phone=document.getElementById('m_phone').value;
+                G_phone=document.getElementById('g_phone').value;
 
-        
+                if(validateMobileNumber1(F_phone)||validateMobileNumber1(M_phone)||validateMobileNumber1(G_phone))
+                {
 
-
-        if(sections[currentSection]=='pdetails'){
-
-            if(parentdetailsfilled()){
-
-                if (currentSection < sections.length - 1) {
-                    if (validateFieldsInSection(currentSection)) {
-                        showSection(currentSection + 1);
+                    if (currentSection < sections.length - 1) {
+                        if (validateFieldsInSection(currentSection)) {
+                            showSection(currentSection + 1);
+                        }
                     }
+                }else{
+                    alert("Please fill in the Mobile Number with exactly 10 digits!!");
                 }
             }
-            else{
+            else {
                 alert("Please fill in at least one set of parent/guardian details");
             }
-        }
-        else{
+        } else {
+            // Proceed to the next section if validations pass
             if (currentSection < sections.length - 1) {
-                if (validateFieldsInSection(currentSection)) {
+                if (validateFieldsInSection(currentSection) && userMobileValid&& aadharValid) {
                     showSection(currentSection + 1);
+                } else if (!userMobileValid) {
+                    alert("Please fill in the Mobile Number with exactly 10 digits!!");
+                }else if (!aadharValid) {
+                    alert("Please fill in the Aadhar Number with exactly 12 digits!!");
                 }
-            }
+                
 
+            }
         }
-    } }
+    }
+}
+
 
 
     function parentdetailsfilled(){
@@ -849,9 +903,9 @@ function updateStatus(value) {
         G_occupation=document.getElementById('g_occupation').value;
         G_phone=document.getElementById('g_phone').value;
 
-        const father_details = F_name !== '' && F_qualification !== '' && F_occupation !== '' && F_phone !== '';
-        const mother_details = M_name !== '' && M_qualification !== '' && M_occupation !== '' && M_phone !== '';
-        const guardian_details = G_name !== '' && G_qualification !== '' && G_occupation !== '' && G_phone !== '';
+        const father_details = F_name !== '' && F_qualification !== '' && F_occupation !== ''&& F_phone!=='';
+        const mother_details = M_name !== '' && M_qualification !== '' && M_occupation !== ''&& M_phone!=='' ;
+        const guardian_details = G_name !== '' && G_qualification !== '' && G_occupation !== '' &&G_phone!=='' ;
 
         if (!father_details && !mother_details && !guardian_details) {
             return false;
@@ -893,7 +947,7 @@ function updateStatus(value) {
         fileInput.addEventListener('change', function(event) {
             const file = this.files[0]; 
             let maxSize = 100 * 1024; 
-            let allowedTypes = ['application/pdf']; 
+            let allowedTypes = ['application/pdf']; // Default allowed MIME types
     
 
     
@@ -920,7 +974,7 @@ function updateStatus(value) {
     
         fileInput.addEventListener('change', function(event) {
             const file = this.files[0]; // Get the uploaded file
-            maxSize = 1 * 1024 * 1024; 
+            maxSize = 1 * 1024 * 1024; // 1 MB in bytes
             let allowedTypes = ['application/pdf']; // Default allowed MIME types
     
     
@@ -1043,13 +1097,17 @@ function updateStatus(value) {
         const jeeTestDetailsFilled = J_entranceTestName !== '' && J_hallTicketNumber !== '' && J_testDate !== '' && J_rankObtained !== '' && J_fileUpload !== '';
     
     
-        if (!entranceTestDetailsFilled && !jeeTestDetailsFilled) {
+        if ((entranceTestDetailsFilled && jeeTestDetailsFilled) || (entranceTestDetailsFilled || jeeTestDetailsFilled)) {
+            document.getElementById('ADM_form').submit();
+            return;
+
+        }
+        else{
             alert('Please fill in at least one set of test details.');
             return;
         }
     
-        // If the form has at least one set of test details filled, submit the form
-        document.getElementById('ADM_form').submit();
+
     }
 </script>
                        
