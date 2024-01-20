@@ -1,16 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
     {% load static %}
-    <head>
-<script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-
-        <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        .required-error {
+            border: 1px solid red;
+            box-shadow: 0 0 5px red; /* Adding a red shadow */
+
+        }
+        
+        .img-thumbnail {
+            width: 200px;
+        }
+    
+        @media only screen and (max-width: 767px) {
+            .img-thumbnail {
+                width: 200px; }
+            #hno,#street_name,#village,#district,#state,#pincode{
+                display:flex;
+                justify-content:center;
+                margin-top:5px;
+                width: 700px;
+            }
+            #p_hno,#p_street_name,#p_village,#p_district,#p_state,#p_pincode{
+                display:flex;
+                justify-content:center;
+                margin-top:5px;
+                width: 500px;
+            }
+        }
+    
+        @media only screen and (min-width: 768px) {
+            .img-thumbnail {
+                width: 250px; /* Adjust this value for laptops/desktops */
+            }
+        }
+    
+
+        label{
+            font-weight:bold;
+        }
+    </style>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.min.css' %}">
@@ -23,663 +62,1025 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.rtl.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.rtl.min.css' %}">
-    <style>
 
-
-#student_undertaking_page>li{
-    margin-bottom:10px;
-
-}
-
-    @media screen and (max-width: 600px) {
-
-
-        }
-
-    @media screen and (min-width: 601px) {
-
-        #cf{
-            padding:50px;
-            border:1px solid black;
-        }
-        
-            /* Additional desktop-specific styles go here */
-    }
-
-
-    th, td {
-        padding: 8px;
-        text-align: left;
-    }
-
-    #E_B{
-        border:1.5  px solid black;
-        text-align:center;
-    }
-    body {
-        font-size: 16px;
-    }
-
-    @media only screen and (max-width: 768px) {
-        /* Add specific styles for smaller screens here */
-        body {
-            font-size: 14px;
-        }
-        .container-fluid {
-            padding: 10px;
-        }
-
-        table {
-            width: 100%;
-        }
-
-        #E_B {
-            font-size: 14px;
-        }
-    }
-
-
-    .container-fluid {
-        padding-left: 15%;
-        padding-right: 15%;
-    }
-
-
-    @media print{
-        .container-fluid {
-            padding:0.5%;
-        }
-
-        #cf {
-            padding: 0;
-            border: none;  /* Remove the border */
-            margin: 0 auto; 
-        }
-        #DAP{
-            display:none;
-        }
-
-    }
-    
-    
-    section {
-        page-break-before: always;
-     }
- 
-
-    
-
-    
-    
-    
-</style>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<body>
+<body class="bg-light"> 
+
+<button onload="sample()">click here...</button>
+
+    <div class="container mt-2 ">
+        <a href="#"><img src="../media/images-removebg-preview.png" alt="img/TopHeader.jpg" class="img-thumbnail bg-light border-light" width="200px"></a>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <p class="card-title text-center  bg-light d-flex align-items-center justify-content-center col-lg-12 mb-3" style="font-size: 125% ">Application for Admission into
+                    <font color="blue" class="ms-2">GPREC</font> </p>
+                <div class="card card-info">
+
+                    <div class="card-header">
+                        <div class="p-2">
+                            <form class="" id="ADM_form" action="/submit" >
+
+                            <section id="sdetails">
+                                <div class="row mb-3">
+                                    <h5 class="card-title text-center mb-4 fw-bold">Student Details</h5>
+
+                                    <div class="col-md-4">
+                                        <label for="firstName" class="form-label small">First Name:</label>
+                                        <input type="text" class="form-control required" id="firstName" placeholder="First Name" name="fname" >
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="middleName" class="form-label small ">Middle Name:</label>
+                                        <input type="text" class="form-control" id="middleName" placeholder="Middle Name" name="mname" >
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="lastName" class="form-label small">Last Name:</label>
+                                        <input type="text" class="form-control " id="lastName" placeholder="Last Name" name="lname" >
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="adharNumber" class="form-label small">Aadhar Number:</label>
+                                        <input type="text" class="form-control  " id="adharNumber" maxlength="12" name="aadhar_number">
+                                    </div>
+                                    <div class="col-md-6">
+                                        
+                                        <label for="mobileNumber" class="form-label small ">Mobile Number:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">+91</span>
+                                            <input type="text" class="form-control " id="mobile" maxlength="10" name="mobile_number" >
+                                        </div>
+                                                                            </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label small ">Email Id:</label>
+                                        <input type="email" class="form-control " id="email" name="email">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="dob" class="form-label small">DOB:</label>
+                                        <input type="date" class="form-control " id="dob" name="DOB">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="Present_address" class="control-label col-sm-3 small ">Local/Present Address:</label>
+                                        <div class="row" name="Present_address">
+                                              <div class="col-lg-2" id="hno"><input type="text" name="l_hno"  class="form-control " placeholder="House no." style="width:80%"></div>  
+                                              <div class="col-lg-2 " id="street_name"> <input type="text" name="l_street"  class="form-control " placeholder="street name" style="width:80%" > </div>  
+                                              <div class="col-lg-2 " id="village"> <input type="text" name="l_city"  class="form-control " placeholder="village/city" style="width:80%" > </div>  
+                                              <div class="col-lg-2 "id="district"> <input type="text" name="l_district"  class="form-control " placeholder="district" style="width:80%" > </div>  
+                                              <div class="col-lg-2 " id="state"> <input type="text" name="l_state"  class="form-control " placeholder="state" style="width:80%" ></div>  
+                                              <div class="col-lg-2 " id="pincode"> <input type="text" name="l_pincode"  class="form-control " placeholder="pincode" style="width:80% " maxlength="6" > </div>  
+            
+                                            </div>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <label for="Present_address" class="control-label col-sm-3 small ">Permanent Address:</label>
+                                        <div class="row" name="Present_address">
+                                              <div class="col-lg-2" id="p_hno"><input type="text" name="p_hno" class="form-control " placeholder="House no." style="width:80%"></div>  
+                                              <div class="col-lg-2" id="p_street_name"> <input type="text" name="p_street"  class="form-control " placeholder="street name" style="width:80%" > </div>  
+                                              <div class="col-lg-2" id="p_village"> <input type="text" name="p_city"  class="form-control " placeholder="village/city" style="width:80%" > </div>  
+                                              <div class="col-lg-2" id="p_district"> <input type="text" name="p_district"  class="form-control " placeholder="district" style="width:80%" > </div> 
+                                              <div class="col-lg-2" id="p_state"> <input type="text" name="p_state"  class="form-control " placeholder="state" style="width:80%" > </div>  
+                                              <div class="col-lg-2" id="p_pincode"> <input type="text" name="p_pincode"  class="form-control " placeholder="pincode" style="width:80%" maxlength="6" > </div>  
+            
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="gender" class="form-label small">Gender:</label>
+                                        <select name="gender" id="ss" class="form-select" >
+                                            <option value="" selected>Select</option>
+                                            <option value="MALE" >MALE</option>
+                                            <option value="FEMALE">FEMALE</option>
+                                            <option value="OTHERS">OTHERS</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="branchApplying" class="form-label small ">Branch Applying:</label>
+                                        <select name="branch_applying" id="branchApplying" class="form-select"  >
+                                            <option value="" selected>Select</option>
+                                            <option value="CSE">CSE</option>
+                                            <option value="ECE">ECE</option>
+                                            <option value="EEE">EEE</option>
+                                            <option value="MECH">MECH</option>
+                                            <option value="CIVIL">CIVIL</option>
+                                            <optgroup label="ECS">
+                                                <option value="CSM">CSM</option>
+                                                <option value="CSD">CSD</option>
+                                                <option value="CSBS">CSBS</option>
+
+                                            </optgroup>
+                                        </select>
+                                        
+
+                                    </div>
+                                </div>
+<!-- Example single danger button -->
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="religion" class="form-label small ">Religion:</label>
+                                        <select name="religion" id="religion" class="form-select" >
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="ISLAM">ISLAM</option>
+                                            <option value="HINDUISM">HINDUISM</option>
+                                            <option value="CHRISTIANITY">CHRISTIANITY</option>
+                                            <option value="BUDDHISM">BUDDHISM</option>
+                                            <option value="OTHER">OTHER</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="bloodGroup" class="form-label small ">Blood Group:</label>
+                                        <select name="blood_group" id="bloodGroup" class="form-select" >
+                                            <option value="">Select</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+
+                                    <div class="col-md-6">
+                                        <label for="category" class="form-label small">Category:</label>
+                                        <select name="category" id="category" class="form-select" >
+                                            <option value="">Select</option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                        </select>
+                                    </div>
+  
+                                    <div class="col-md-6 ">
+                                        <label for="caste" class="form-label small">Caste:</label>
+                                        <input type="text" name="caste" id="" class="form-control" >
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="allottedCategory" class="form-label small">Allotted Category:</label>
+                                        <select name="allotted_category" id="allottedCategory" class="form-select" >
+                                            <option value="">Select</option>
+                                            <option value="EWS">EWS</option>
+                                            <option value="OBC">OBC</option>
+                                            <option value="Girls">Girls</option>
+                                            <option value="Handicapped">Handicapped</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-md-6 ">
+                                        <label for="caste" class="form-label small">Reservation Category:</label>
+                                        <select name="reservation_category" id="" class="form-select" >
+                                            <option value="">Select</option>
+                                            <option value="OC">OC</option>
+                                            <option value="BC-A"> BC-A </option>
+                                            <option value="BC-B"> BC-B </option>
+                                            <option value="BC-C"> BC-C </option>
+                                            <option value="BC-D"> BC-D </option>
+                                            <option value="BC-E"> BC-E </option>
+                                            <option value="SC">SC</option>
+                                            <option value="ST">ST</option>
+                                            
+
+                                    </select>                                    </div>
+
+                                </div>
 
 
+                                    <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="caste" class="form-label small ">Are You Physically Handicapped:</label>
+                                        <select name="ph_status" id="ph_status" class="form-select required" onchange="updateStatus(this.value)">
+                                            <option value="">Select</option>
+                                          <option value="yes">Yes</option>
+                                          <option value="no">No</option>
+
+                                    </select> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="ph" class="form-label small ">Physically Handicapped Proof:</label>
+                                        <input type="file" class="form-control" name="ph_doc" id="fileconstraint10" >
+                                        <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        
+                                    </div>
+                                    <div class="col-md-6">
+                                        
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+                                <div class="row mb-">
+                                    <div class="col-md-4"> 
+                                        <label for="ph" class="form-label small ">Student Passport-size Photo:</label>
+                                        <input type="file" class="form-control required" name="student_photo" id="fileconstraint1">
+                                        <small class="form-text text-muted">File should be less than 100 KB and in image format (JPEG, PNG, etc,.)</small>
+
+                                    </div>
+                                    <div class="col-md-4"> 
+                                        <label for="ph" class="form-label small">Aadhar Proof:</label>
+                                        <input type="file" class="form-control " name="aadhar_doc"  id="fileconstraint2">
+                                        <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
+ </div>
+                                    <div class="col-md-4"> 
+                                        <label for="ph" class="form-label small ">Allotment Order & Joining Order (Merged PDF):</label>
+                                        <input type="file" class="form-control " name="aj_docs" id="mergedfileconstraint">
+                                        <small class="form-text text-muted">File should be less than 1 MB and in PDF format only.</small>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <label for="ph" class="form-label small ">Transfer Certificate:</label>
+                                        <input type="file" class="form-control" name="tc_doc" id="fileconstraint3"> 
+                                        <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
+                                    </div>
+                                    <div class="col-md-4"> 
+                                        <label for="ph" class="form-label small ">Caste Certificate:</label>
+                                        <input type="file" class="form-control" name="caste_doc" id="fileconstraint4">
+                                        <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
+
+                                    </div>
+                                    <div class="col-md-4"> 
+                                        <label for="ph" class="form-label small ">Income Proof (Ration/Income Certificate):</label>
+                                        <input type="file" class="form-control" name="ir_doc" id="fileconstraint5">
+                                        <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </section>
+                        <section id="edetails" style="display:none">
+                            
+                            <div class="row mb-3">
+                                <h5 class="card-title text-center mb-4 fw-bold">SSC or Equivalent Level</h5>
+
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">Examination:</label>
+                                    <select name="s_qualification" id="ssc_exam_type" class="form-select " >
+                                        <option selected disabled value="">Select</option>
+                                        <option value="SSC">S.S.C</option>  
+                                        <option value="SSC Equivalent">S.S.C Equivalent</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">Roll Number:</label>
+                                    <input type="text" name="s_roll" id="" class="form-control" >
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">Institute Name:</label>
+                                    <input type="text" class="form-control" name="s_institute_name">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">City:</label>
+                                    <input type="text" class="form-control" name="s_institute_city">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">State:</label>
+                                    <input type="text" class="form-control" name="s_institute_state">
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">Year Of Passing:</label>
+                                    <input type="date" class="form-control" name="s_YOP">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">Board:</label>
+                                    <input type="text" class="form-control" name="s_board">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label   small">Marks Obtained:</label>
+                                    <input type="number" class="form-control" name="s_marks_obtained">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label   small">Total Marks:</label>
+                                    <input type="number" class="form-control" name="s_total_marks">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label  small">Percentage:</label>
+                                    <input type="number" class="form-control" name="s_percentage">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label   small">CGPA:</label>
+                                    <input type="number" class="form-control" name="s_cgpa">
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label   small">Provisional Certificate Number:</label>
+                                    <input type="text" class="form-control" name="s_pc_number">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label   small">Provisional Certificate:</label>
+                                    <input type="file" class="form-control" id="fileconstraint6" name="s_pc_doc">
+                                    <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
+
+                                </div>
+                            </div>
+
+                            <hr class="mb-4">
+
+                            <div class="row mt-3">
+                                <h5 class="card-title text-center mb-4 fw-bold">Intermediate or Equivalent Level</h5>
+
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label   small">Examination:</label>
+                                    <select name="h_qualification" id="ssc_exam_type" class="form-select" >
+                                        <option selected disabled value="">Select</option>
+                                        <option value="Intermediate">Intermediate</option>  
+                                        <option value="Diploma">Diploma</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label   small">Roll Number:</label>
+                                    <input type="text" name="h_roll" id="" class="form-control" >
+                                </div>
+                                
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label  small">Group/Course:</label>
+                                    <input type="text" name="h_course" id="" class="form-control" >
+
+                                </div>
+                                
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">Institute Name:</label>
+                                    <input type="text" class="form-control" name="h_institute_name">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">City:</label>
+                                    <input type="text" class="form-control" name="h_institute_city">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">State:</label>
+                                    <input type="text" class="form-control" name="h_institute_state">
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">Year Of Passing:</label>
+                                    <input type="date" class="form-control" name="h_YOP">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label col-sm-4  small">Board:</label>
+                                    <input type="text" class="form-control" name="h_board" >
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label   small">Marks Obtained:</label>
+                                    <input type="number" class="form-control" name="h_marks_obtained">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label   small">Total Marks:</label>
+                                    <input type="number" class="form-control" name="h_total_marks">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label  small">Percentage:</label>
+                                    <input type="number" class="form-control" name="h_percentage" >
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ssc_exam_type" class="control-label   small">CGPA:</label>
+                                    <input type="number" class="form-control" name="h_cgpa">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label   small">Provisional Certificate Number:</label>
+                                    <input type="text" class="form-control" name="h_pc_number">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="ssc_exam_type" class="control-label   small">Provisional Certificate:</label>
+                                    <input type="file" class="form-control" id="fileconstraint7" name="h_pc_doc">
+                                    <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
+
+                                </div>
+                            </div>
+                        </section>
+
+
+<section id="pdetails" style="display:none">
+
+<div class="row mb-3">
+    <h5 class="card-title text-center mb-4 fw-bold">Parent/Guardian Details</h5>
+
+    <h5 class="card-title text-end mb-4 fw-bold">Father Details</h5>
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="control-label small">Full Name:</label>
+        <input type="text" class="form-control" id="f_name" name="father_name">
+    </div>
+
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="control-label small"> Qualification:</label>
+        <input type="text" class="form-control" id="f_qualification" name="father_qualification">
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="control-label small"> Occupation:</label>
+        <input type="text" class="form-control" id="f_occupation" name="father_occupation">
+    </div>
     
-<div class="container-fluid">
+    <div class="col-md-6 mb-4">
+        <label for="ssc_exam_type" class="control-label small"> Phone Number:</label>
+        <div class="input-group">
+            <span class="input-group-text">+91</span>
+            <input type="text" class="form-control" id="f_phone" maxlength="10" name="father_phone">
+        </div>
+    </div>
+</div>
+
+<h5 class="card-title text-end mb-4 fw-bold" >Mother Details</h5>
+<div class="row mb-3">
+
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="control-label small">Full Name:</label>
+        <input type="text" class="form-control" id="m_name" name="mother_name">
+    </div>
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="control-label   small"> Qualification:</label>
+        <input type="text" class="form-control" id="m_qualification" name="mother_qualification">
+    </div>
+</div>
+
+<div class="row mb-3">
+
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="control-label   small"> Occupation:</label>
+        <input type="text" class="form-control" id="m_occupation" name="mother_occupation">
+    </div>
+    <div class="col-md-6 mb-4">
+        <label for="ssc_exam_type" class="control-label   small"> Phone Number:</label>
+        <div class="input-group">
+            <span class="input-group-text">+91</span>
+            <input type="text" class="form-control " id="m_phone" maxlength="10" name="mother_phone">
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <h5 class="card-title text-end mb-4 fw-bold">Guardian Details</h5>
+
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="control-label   small">Full Name:</label>
+        <input type="text" class="form-control" id="g_name" name="guardian_name">
+    </div>
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="control-label   small"> Qualification:</label>
+        <input type="text" class="form-control" id="g_qualification" name="guardian_qualification">
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="control-label   small"> Occupation:</label>
+        <input type="text" class="form-control"  id="g_occupation" name="guardian_occupation">
+    </div>
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="control-label   small"> Phone Number:</label>
+        <div class="input-group">
+            <span class="input-group-text">+91</span>
+            <input type="text" class="form-control " id="g_phone" maxlength="10" name="guardian_phone" >
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="row mb-3">
+    <div class="col-md-6">    
+        <label for="ssc_exam_type" class="control-label   small">Parent/Guardian Email Id:</label>
+        <input type="email" class="form-control" name="pg_email" ></div>
+</div>
+
+
+</section>
+
+<section id="cetdetails" style="display:none">
+<div class="row mb-3">
+    <h5 class="card-title text-center mb-4 fw-bold">Entrance Test Details</h5>
+
+    <div class="col-md-6 ">
+        <label for="ssc_exam_type" class="control-label   small">Test Name:</label>
+        <select name="e_test_name" id="test_name" class="form-select" required>
+            <option selected disabled value="">Select</option>
+            <option value="A.P EAMCET">A.P EAMCET</option>  
+            <option value="A.P ECET">A.P ECET</option>
+            <option value="Other">Other</option>
+        </select> 
+
+    </div>
+    <div class="col-md-6">
+        <label for="ssc_exam_type" class="form-label  small">Hall Ticket Number:</label>
+        <input type="text" class="form-control form-check " id="hall_ticket_number" name="e_hallticket_number" >
+
+    </div>
+    
+</div>
+
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        <label for="ssc_exam_type" class="control-label   small">Test Date:</label>
+        <input type="date" class="form-control" id="test_date" onchange="handleTestDate()" name="e_test_date">
+    </div>
+    <div class="col-md-4">
+        <label for="ssc_exam_type" class="control-label   small">Rank Obtained:</label>
+        <input type="number" class="form-control" id="rank_obtained" name="e_rank_obatained">
+    </div>
+    <div class="col-md-4 mb-4">
+        <label for="fileconstraint9" class="control-label  small">Upload Rank Card:</label>
+        <input type="file" class="form-control" id="fileconstraint9" placeholder="NA" name="e_rank_card" >
+        
+        <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
+
+    </div>
+
+
+    <div class="form-check ms-3 d-flex">
+        <input type="checkbox" name="jj" id="jj" class="form-check">
+        <label for="jj" class="form-check-label ms-2">Have you taken JEE Mains?</label>
+    </div>
+</div>
+</section>
+
+<section style="display:none" id="jeemains">
+    <div class="row">
+        <h5 class="card-title text-center mb-4 fw-bold">JEE MAINS Test Details</h5>
+        <div class="col-md-6">
+            <label for="ssc_exam_type" class="control-label small">Test Name:</label>
+            <select name="j_test_name" id="j_test_name" class="form-select " >
+                <option selected disabled value="">Select</option>
+                <option value="SSC">JEE MAIN</option> 
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="ssc_exam_type" class="form-label  small">Hall Ticket Number:</label>
+            <input type="text" class="form-control form-check " id="j_hall_ticket_number" name="j_hallticket_number" >
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <label for="ssc_exam_type" class="control-label   small">Test Date:</label>
+            <input type="date" class="form-control" id="j_test_date" name="j_test_date">
+        </div>
+        <div class="col-md-4">        
+            <label for="ssc_exam_type" class="control-label   small">Rank Obtained:</label>
+            <input type="number" class="form-control" id="j_rank_obtained" name="j_rank_obatained"></div>
+        <div class="col-md-4">
+            <label for="ssc_exam_type" class="control-label   small">Upload Rank Card:</label>
+            <input type="file" class="form-control" id="fileconstraint11" name="j_rank_card">
+            <small class="form-text text-muted">File should be less than 100 KB and in PDF format only.</small>
+        </div>
+    </div>
+
+    <div class="row">
+
+    </div>
+</section>
+
+<div class="row mt-3 mb-4">
     <div>
-        <div style="" id="cf">
-        <img src="{% static 'media/gprec_logo1.png' %}" alt="image version not supported" height="50px" width="400px" >
-
-        <div class=" text-center" style="margin-bottom:10px;font-weight:bold;">-- B.Tech Registration Form --</div>
-
-    <span class="border d-flex justify-content-center align-items-center text-center" style="height:2in;width:2in;float:right;margin:20px">
-        attach your photograph
+    <span class="text-end " id="prev" >      
+        <input type="button" class="btn btn-primary" value="previous" onclick="previousSection()" style="float:left">
     </span>
 
-
-    <br>
-    <table style="margin-top:5px;">
-    <tr>
-        <th colspan="2"><h4><u>Student Details</u></h4>
-        </th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th ></th>
-    </tr>
-
-    <tr>
-        <th>Student name:</td>
-        <td>Dwayne Johnson</td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    
-    <tr>
-        <th>DOB:</td>
-        <td>Dwayne Johnson</td>
-        <td></td>
-        <th>Gender:</td>
-        <td>Male</td>
-    </tr>
-
-    <tr>
-        <th>Aadhar Number:</td>
-        <td>Dwayne Johnson</td>
-        <td></td>
-        <th>Branch:</td>
-        <td>Male</td>
-    </tr>
-    
-
-    <tr>
-        <th>Phone Number:</td>
-        <td>Dwayne Johnson</td>
-        <td></td>
-        <th>Email ID:</td>
-        <td>Male</td>
-    </tr>
-    </table>
-
-    <table>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-            <tr>
-                <th>Local Address:</th>
-                <td colspan="7" style="border:1.4px solid black;width:75%;"> </td>            
-            </tr>
-            <tr style="height:10px;" colspan="8"></tr>
-
-            <tr>
-                <th>Permanent Address:</th>
-                <td colspan="7"style="border:1.4px solid black;width:75%"> </td>            
-            </tr>
-
-
-        </table>
-
-
-
-       
-    <table>
-     <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr> 
-
-    <tr>
-                <th>Religion:</th>
-                <td>Hindu</td>
-                <td></td>
-                <th>Caste:</th>
-                <td>Male</td>
-                <td></td>
-                <th>Reservation Category:</th>
-                <td>Male</td>
-    </tr>  
-
-    <tr>
-        <th>Blood Group:</th>
-        <td>Hindu</td>
-        <td></td>
-        <th>Category:</th>
-        <td>Male</td>
-        <td></td>
-        <th>Alloted Category:</th>
-        <td>Male</td>
-    </tr>  
-
-    <tr>
-    <th>Handicapped Status:</th>
-    <td colspan="7">Yes</td>
-    </tr>  
-
-
-    <tr>
-    <th colspan="3"> <h4><u>Parent Details</u></h4></th>   
-    <td></td> 
-    <td></td> 
-    <td></td> 
-    <td></td> 
-    <td></td> 
-
-    </tr>
-
-    <tr>
-    <th>Father name:</th>
-    <td colspan="7">obula sai mochi</td>
-    <td></td>
-    </tr>
-    <tr>
-    <th>QualificAation:</th>
-    <td>B.Tech</td>
-    <td></td>
-    <th>Occupation:</th>
-    <td>software engineer</td>
-    <td></td>  
-        <th> Phone Number:</th>
-        <td>Dwayne Johnson</td>
-    <td></td>
-    </tr> 
-
-    <tr>
-        <th>Mother name:</th>
-        <td colspan="7">obula sai mochi</td>
-        <td></td>
-    </tr>
-    <tr>
-        <th>QualificAation:</th>
-        <td>B.Tech</td>
-    <td></td>
-    <th>Occupation:</th>
-    <td>software engineer</td>
-    <td></td>  
-        <th> Phone Number:</th>
-        <td>Dwayne Johnson</td>
-    <td></td>
-    </tr> 
-
-    <tr>
-        <th>Guardian name:</th>
-        <td colspan="7">obula sai mochi</td>
-        <td></td>
-    </tr>
-    <tr>
-        <th>QualificAation:</th>
-        <td>B.Tech</td>
-    <td></td>
-    <th>Occupation:</th>
-    <td>software engineer</td>
-    <td></td>  
-        <th> Phone Number:</th>
-        <td>Dwayne Johnson</td>
-    <td></td>
-    </tr> 
-
-
-    <tr>
-        <th>Parent Email:</th>
-        <td colspan="7">obulasaimochi@gmail.com</td>
-    </tr>
-
-</table>
-</div>
-</div>
-
-<section>
-
-    <tr>
-        <th colspan="4"><h4><u>Educational Details</u></h4></th>
-    </tr>
-
-    <tr >
-
-        <th colspan="8" ><h5 style="text-align:center;">Acadamic performance</h5></th>
-
-    </tr>
-
-
-    <tr>    
-    <table id="E_B" style="width:100%" class="tables_selector" cellspacing="0">
-        <tr id="E_B">
-            <th id="E_B">Course</th>
-            <th id="E_B">Board</th>
-            <th id="E_B">Marks Obtained</th>
-            <th id="E_B">Total Marks</th>
-            <th id="E_B">percentage</th>
-            <th id="E_B">CGPA</th>
-            <th id="E_B">Month & Year of passing</th>
-        </tr>
-
-        <tr id="E_B">
-            <th id="E_B">S.S.C / X Class</th>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-
-        </tr>
-        <tr id="E_B">
-            <th id="E_B">Intermediate / Diploma</th>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-
-        </tr>   
-
+    <span class="text-center " id="sb" style="display:none;">
+            <input type="submit" class="btn btn-primary ps-3 pe-3" value="submit" onclick="validateForm(event)" style="margin-start:90px;">
+    </span>
+    <span class="text-end" id="nxt" style="float:right;">
+        <input type="button" class="btn btn-primary ps-4 pe-4 " value="next" onclick="nextSection()" style="float:right">
+    </span>
 
     
-    </table>
-    </tr>
-    <tr ><td colspan="8">&nbsp</td></tr>
-
-    {% comment %} <tr>
-
-        <th colspan="8" ><h5 style="text-align:center;">Institute Details</h5></th>
-
-    </tr> {% endcomment %}
-
-
-    <tr>
-    <table id="E_B" style="width:100%" class="tables_selector" cellspacing="0"> 
-        <tr id="E_B">
-            <th id="E_B">Course</th>
-            <th id="E_B">Roll Number</th>
-            <th id="E_B">PC Number</th>
-            <th id="E_B">Group / Course</th>
-            <th id="E_B">Name & Place of the Institude where studied</th>
-        </tr>
-
-        <tr id="E_B">
-            <th id="E_B">S.S.C / X Class</th>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-
-        </tr>
-        <tr id="E_B">
-            <th id="E_B">Intermediate / Diploma</th>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-
-        </tr>   
-        </table>
-    </tr>
-    <tr>&nbsp</tr>
-    <tr>
-
-    <th colspan="8" ><h5 style="text-align:center;"> Entrance Test Details</h5></th>
-
-    </tr>
-
-
-    <tr>
-    <table id="E_B" style="width:100%" class="tables_selector" cellspacing="0">
-        <tr id="E_B">
-            <th id="E_B">Test Name</th>
-            <th id="E_B">Hall Ticket Number</th>
-            <th id="E_B">Test Date</th>
-            <th id="E_B">Rank Obtained</th>
-        </tr>
-
-        <tr id="E_B">
-            <th id="E_B">A.P ECET</th>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-
-
-        </tr>
-        <tr id="E_B">
-            <th id="E_B">Jee Mains</th>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-            <td id="E_B"></td>
-        </tr>   
-    </table>
-    </tr>
-    </table>
-    <div style="margin-top:13%">
-        <h6 Class="fs-5 " style="text-align:center"> DECLARATION </h6>
-            <p style="margin-left:100px;display:inline;">  We declare that</p> <p style="display:inline;"> all the foregoing statements made in this application are true. We accept that any statement made in this application, if found incorrect on scrutiny, will render the application liable for rejection, and cancellation of admission, If granted on the basis of such incorrect information.
-            </p>
-    </div>
-
-
-    <div style="display: flex; justify-content: space-between;margin-top:15%;">
-        <div>
-        <div style="float: left; border: 1px solid black; width: 180px; height: 50px;"></div>
-        <p style="text-align:center;font-weight:bold;">Date</p>
-        </div>
-        
-        <div>
-        <div style="display: flex; justify-content: center; align-items: center; border: 1.5px solid black; width: 180px;height: 50px;"></div>
-        <p style="text-align:center;font-weight:bold;">Student Signature</p>
-    </div>
-
-        <div>
-        <span style="float: right; border: 1px solid black; width: 180px; height: 50px;"></span>
-        <p style="text-align:center;font-weight:bold;">Parent Signature</p>
-    </div>
-
-    </div>
-</section>
-
-<section style="padding:10px;">
-    <div style="border:1.5px solid black;padding:1.5%;padding-bottom:3%">
-    <div style="margin-top:1%;margin-bottom:2%">
-        <h6 style="text-align:center;">G.PULLA REDDY ENGINEERING COLLEGE (Autonomous): KURNOOL</h6>
-        <h6 style="text-align:center;"><u>INSTRUCTIONS TO THE CANDIDATES</u></h6>
-    </div>
-
-
-    <ol>
-        <li>Candidates who have passed two year Intermediate Examination conducted by Bos Intermediate Education, A.P. or its equivalent as prescribed by APSCHE.</li>
-    
-        <li>Interested candidates can submit the filled-in-application form along with all enclosures and Registration fee of Rs.1,000/- (non-refundable) either in cash or in the form of DD in favour o G.Pulla Reddy Engineering College, Kurnool on all working days on or before_____________.</li>
-        
-        <li>The Selection of Candidates for category-B seats will be as per the procedure decided by the Govt. of A.P. The branch allotted to the students will be based on the options given by the candidates in the application form. Branch allotted cannot be changed.</li>
-        <li>At the time of admission, the candidates are required to pay the Tuition Fee and other Miscellaneous Fee. Fee once paid will not be refunded under any circumstances.</li>
-        <li>Candidates admitted under Category-B seats are not eligible for any kind of Government Scholarships</li>
-        <li>If the fee is not paid on or before the due date, admission will be cancelled.</li>
-        <li>The following Original Certificates are to be submitted at the time of admission
-            <ol type="a">
-                <li>SSC or equivalent examination marks memo.</li>
-                <li>Intermediate or equivalent examination marks memo(s)</li>
-                <li>Study Certificate (6th Class to Intermediate)</li>
-                <li>Transfer Certificate (TC)</li>
-                <li>JEE (Main) -  Hall Ticket & Rank Card (if appeared)</li>
-                <li>AP EAPCET - Hall Ticket & Rank Card (if appeared)</li>
-                <li>Copy of Caste Certificate in case of SC/ST/OBC</li>
-                <li>Copy of Aadhaar Card</li>
-                <li>Three(3) sets of Xerox copies of all the above certificates</li>
-                <li>Passport Size Photos - 4</li>
-                <li>Copy of Parent's PAN Card</li>
-                <li>Equivalency Certificate from Board of Intermediate Education, AP for other State Boards / Universities / Schools</li>
-                <li>Residence certificate for Non-local students</li>
-            </ol>
-            <b>(Please keep the scanned copies of original Certificates before submission for future use)</b>
-        </li>
-        <li>An undertaking in the prescribed format should be submitted by the Parent and Student with respect to the fee to be paid to the college.</li>
-        <li>These admissions are subject to the approval of Andhra Pradesh State Council of Higher Education.</li>
-        <li>In the event of the management finding that any of the selected candidates is not eligible for admission, the Management shall be at liberty to reject the candidature</li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</ol>
-</div>
-</section>
-
-
-<section style="">
-    <div style="border:1.5px solid black;padding:20px;">
-    <div>
-        <h4 style="text-align:center;">UNDERTAKING BY THE CANDIDATE/STUDENT</h4>
-    </div>
-
-    <ol id="student_undertaking_page" style="margin-top:10%;margin-bottom:20%"> 
-        <li>I,_____________________ S/o D/o of Mr/Ms_____________________
-            have carefully read and fully understood the law prohibiting ragging and the directions of the Supreme Court and the Central/State Government in this regard.</li>
-        <li>I have received a copy of UGC Regulations on Curbing the Menace of Ragging in Higher Educational Institutions, 2009 and have carefully gone through it</li>
-        <li>I hereby undertake that
-            <ul>
-                <li>I will not indulge in any behaviour or act that may come under the definition of ragging</li>
-                <li>I Will not participate in or abet or propagate ragging in form</li>
-                <li>I will not hurt anyone physically or psychologically or cause any other harm</li>
-            </ul>
-        </li>
-        <li>I hereby agree that if found guilty of any aspect of ragging, I may be punished as per the
-            provisions of the UGC Regulations mentioned above and/or as per the law in force</li>
-        <li>I hereby affirm that I have not been expelled or debarred from admissions by any institution.</li>
-    </ol>
-
-    <div style="margin-top:10%;margin-bottom:28%">
-        <p style="text-align:center;">Signed this _______________ day of _______________month of _______________ year</p>
-        <h6 style="text-align:end;margin-top:20%;margin-right:5%;">Signature of the Student</h6>
-    </div>
-
-
-    
-</div>
-</section>
-
-
-<section style="">
-    <div style="border:1.5px solid black;padding:20px;">
-    <div>
-        <h4 style="text-align:center;">UNDERTAKING BY THE PARENT/GUARDIAN</h4>
-    </div>
-
-    <ol id="student_undertaking_page" style="margin-top:10%;margin-bottom:20%"> 
-        <li>I,_____________________ F/o. M/o. G/o _____________________
-            have carefully read and fully understood the law prohibiting ragging and the directions of the Supreme Court and the Central / State Government in this regard as well as the UGC Regulations on Curbing the Menace of Ragging in Higher Educational Institutions, 2009.</li>
-        <li>I assure you that my son/daughter/ward will not indulge in any act of ragging.</li>
-        <li>I hereby agree that if he/she found guilty of any aspect of ragging, he/she may be punished as per the provisions of the UGC Regulations mentioned above and/or as per the law in force
-        </li>
-        <li>I hereby agree that if found guilty of any aspect of ragging, I may be punished as per the
-            provisions of the UGC Regulations mentioned above and/or as per the law in force</li>
-        <li>I hereby affirm that I have not been expelled or debarred from admissions by any institution.</li>
-    </ol>
-
-    <div style="margin-top:10%;margin-bottom:36%">
-        <p style="text-align:center;">Signed this _______________ day of _______________month of _______________ year</p>
-        <h6 style="text-align:end;margin-top:20%;margin-right:5%;">Signature of the Parent / Guardian</h6>
-    </div>
-
-
-</div>
-
-</section>
-
-
-
-<section style="">
-    <div style="border:1.5px solid black;padding:20px;">
-
-    <div style="text-align:center;">
-        <h5 >UNDERTAKING</h5>
-        <h5>(For B-Category/SPOT Admission into B.Tech course)</h5>
-        <h6 style="text-align:end;margin-top:5% ">Date: ________________</h6>
-    </div>
-    <div style="text-align:left;margin-top:5%">
-        <div>To,</div>
-        <div>The Principal,</div>
-        <div>G.Pulla Reddy Engineering College (Autonomous),</div>
-        <div>Kurnool-518 007.</div>
-        <p style="margin-top:3%;">Dear Sir,</p>
-    </div>
-
-    <div style="text-align:center;margin-bottom:5%;">
-        <b>Sub:-</b> Undertaking with respect to the fees to be paid to the college
-    </div>
-
-    <div>
-        I, Mr/Ms.__________________________________________________________________________ (the student) and We Mr/Ms._____________________________________________ (Parent/Guardian) residing at ________________________________________________ the former having been admitted to the I Yr. B.Tech course in ___________________________ branch for the academic _____________ at your institute, under B-Category (JEE Main/EAPCET/Intermediate) hereby undertaking to abide by the following.
-    </div>
-
-    <ol>
-        <li>
-             We agree, affirm and declare jointly and severally that the tuition fees of Rs __________. (Rupees ____________________________________________________________________ only) will be paid by us to the said Institute for every year till completion of the course.
-        </li>
-        <li>
-            We understand that the said fee shall be neither negotiable nor refundable in full or part thereof under any circumstances.
-        </li>
-        <li>
-            We assure that the fees will be paid before comrnencement of every academic year.
-        </li>
-        <li>
-            We also undertake to pay the fees for all years of course duration, even if the Candidate discontinue his/her studies any time before completion of the course for whatever reasons.
-        </li>
-        <li>
-             We also understand that if all the dues are not cleared, the student will not be permitted to write the examinations.
-        </li>
-
-    </ol>
-
-    <div style="margin-top:5%">
-        <h6 style="float:left;">Yours faithfully,</h6>
-    </div>
-    
-
-    <div style="display: flex; justify-content: space-between;margin-top:25%">
-        <div>
-        <div style="float: left;"> ___________________________________</div>
-        <p style="text-align:center;font-weight:bold;">(Signature of Parent/Guardian)</p>
-        </div>
-        
-
-    
-        <div>
-        <span style="float: right; "> ___________________________________ </span>
-        <p style="text-align:center;font-weight:bold;">(Signature of the Student)</p>
-    </div>
-    
-    </div>
-
-    {% comment %} <div>
-        <span style="float: right;">___________________________</span>
-        <h6 style="text-align:center;font-weight:bold;">(Signature of the Student)</h6>
-    </div>  {% endcomment %}
-
-</div>
-</section>
-
-
-
-
-
-
-<div class="d-flex justify-content-center">
-<button onclick="window.print()" style="margin-top:20px;" id="DAP">Download as PDF</button>
 </div>
 </div>
 
-</div>
 
-<p id="dimensions"></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
-    // Update the content of the element with the ID "dimensions"
-    document.getElementById("dimensions").innerHTML = "Window Height: " + window.innerHeight + "<br>Window Width: " + window.innerWidth;
+    function sample(){
+        window.print();
+    }
 </script>
-            <script src="{% static 'js/bootstrap.js' %}" ></script>
-            <script src="{% static 'js/bootstrap.min.js' %}" ></script>
-            <script src="{% static 'js/bootstrap.bundle.js' %}" ></script>
-            <script src="{% static 'js/bootstrap.bundle.min.js' %}" ></script>
-            <script src="{% static 'js/bootstrap.esm.js' %}" ></script>
-            <script src="{% static 'js/bootstrap.esm.min.js' %}" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script>
+    const sections = ['sdetails', 'edetails', 'pdetails', 'cetdetails'];
+    let currentSection = 0;
+    
+    function hideAllSections() {
+        sections.forEach(section => {
+            document.getElementById(section).style.display = 'none';
+        });
+    }
+    
+    function showSection(sectionIndex) {
+        hideAllSections();
+        document.getElementById(sections[sectionIndex]).style.display = 'block';
+        currentSection = sectionIndex;
+        updateButtonVisibility();
+    }
+    
+    function validateFieldsInSection(sectionIndex) {
+        const fields = document.getElementById(sections[sectionIndex]).querySelectorAll('.required');
+        let valid = true;
+    
+        fields.forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('required-error');
+                valid = false;
+            } else {
+                field.classList.remove('required-error');
+            }
+        });
+    
+        return valid;
+    }
+    
+    function updateButtonVisibility() {
+        if (currentSection === 0) {
+            document.getElementById('prev').style.display = 'none';
+            document.getElementById('sb').style.display = 'none';
+            document.getElementById('nxt').style.display = 'inline-block';
+        } else if (currentSection === sections.length - 1) {
+            document.getElementById('prev').style.display = 'inline-block';
+            document.getElementById('sb').style.display = 'inline-block';
+            document.getElementById('nxt').style.display = 'none';
+        } else {
+            document.getElementById('prev').style.display = 'inline-block';
+            document.getElementById('sb').style.display = 'none';
+            document.getElementById('nxt').style.display = 'inline-block';
+        }
+    }
+
+let ph_status_variable = false;
+
+function updateStatus(value) {
+    if (value === 'yes') {
+        ph_status_variable = true;
+    } else  {
+        ph_status_variable = false;
+    } 
+}
+
+
+   function nextSection() {
+        if(ph_status_variable==true){
+            alert("please upload PH document");
+        }
+        else{
+
+        
+
+
+        if(sections[currentSection]=='pdetails'){
+
+            if(parentdetailsfilled()){
+
+                if (currentSection < sections.length - 1) {
+                    if (validateFieldsInSection(currentSection)) {
+                        showSection(currentSection + 1);
+                    }
+                }
+            }
+            else{
+                alert("Please fill in at least one set of parent/guardian details");
+            }
+        }
+        else{
+            if (currentSection < sections.length - 1) {
+                if (validateFieldsInSection(currentSection)) {
+                    showSection(currentSection + 1);
+                }
+            }
+
+        }
+    } }
+
+
+    function parentdetailsfilled(){
+        F_name=document.getElementById('f_name').value;
+        F_qualification=document.getElementById('f_qualification').value;
+        F_occupation=document.getElementById('f_occupation').value;
+        F_phone=document.getElementById('f_phone').value;
+
+        M_name=document.getElementById('m_name').value;
+        M_qualification=document.getElementById('m_qualification').value;
+        M_occupation=document.getElementById('m_occupation').value;
+        M_phone=document.getElementById('m_phone').value;
+
+        G_name=document.getElementById('g_name').value;
+        G_qualification=document.getElementById('g_occupation').value;
+        G_occupation=document.getElementById('g_occupation').value;
+        G_phone=document.getElementById('g_phone').value;
+
+        const father_details = F_name !== '' && F_qualification !== '' && F_occupation !== '' && F_phone !== '';
+        const mother_details = M_name !== '' && M_qualification !== '' && M_occupation !== '' && M_phone !== '';
+        const guardian_details = G_name !== '' && G_qualification !== '' && G_occupation !== '' && G_phone !== '';
+
+        if (!father_details && !mother_details && !guardian_details) {
+            return false;
+        }
+        else{
+            return true;
+        }
+
+
+    }
+    
+    function previousSection() {
+        if (currentSection > 0) {
+            showSection(currentSection - 1);
+        }
+    }
+    
+    window.onload = function () {
+        hideAllSections();
+        showSection(0);
+        applyFileValidation('fileconstraint10');
+
+    };
+    
+    const checkbox = document.getElementById('jj');
+    const jeemainsSection = document.getElementById('jeemains');
+
+    checkbox.addEventListener('change', function () {
+        if (checkbox.checked) {
+            jeemainsSection.style.display = 'block';
+        } else {
+            jeemainsSection.style.display = 'none';
+        }
+    });
+
+    function applyFileValidation(inputId) {
+        const fileInput = document.getElementById(inputId);
+    
+        fileInput.addEventListener('change', function(event) {
+            const file = this.files[0]; 
+            let maxSize = 100 * 1024; 
+            let allowedTypes = ['application/pdf']; 
+    
+
+    
+            if (file.size > maxSize) {
+                alert('File size exceeds ' + (maxSize / 1024) + ' KB. Please select a smaller file.');
+                this.value = '';
+                 // Reset the file input
+                
+                return;
+            }
+    
+            if (!allowedTypes.includes(file.type)) {
+                alert('Only PDF files are allowed.');
+                this.value = ''; // Reset the file input
+                return;
+            }
+            ph_status_variable = false;
+
+        });
+    }
+
+    function applyFileValidation1(inputId) {
+        const fileInput = document.getElementById(inputId);
+    
+        fileInput.addEventListener('change', function(event) {
+            const file = this.files[0]; // Get the uploaded file
+            maxSize = 1 * 1024 * 1024; 
+            let allowedTypes = ['application/pdf']; // Default allowed MIME types
+    
+    
+            if (file.size > maxSize) {
+                alert('File size exceeds ' + (maxSize / 1024) + ' KB. Please select a smaller file.');
+                this.value = ''; // Reset the file input
+                return;
+            }
+    
+            if (!allowedTypes.includes(file.type)) {
+                alert('Only PDF files are allowed.');
+                this.value = ''; // Reset the file input
+                return;
+            }
+        });
+    }
+    
+    function imagefilevalidator(inputId) {
+        const fileInput = document.getElementById(inputId);
+    
+        fileInput.addEventListener('change', function(event) {
+            const file = this.files[0]; // Get the uploaded file
+            maxSize = 100 * 1024; // 1 MB in bytes
+            let allowedTypes = ['image/jpeg', 'image/jpg', 'image/png']; // Allowed MIME types for images
+    
+    
+            if (file.size > maxSize) {
+                alert('File size exceeds ' + (maxSize / 1024) + ' KB. Please select a smaller file.');
+                this.value = ''; // Reset the file input
+                return;
+            }
+    
+            if (!allowedTypes.includes(file.type)) {
+                alert('Only jpg, jpeg, png files are allowed.');
+                this.value = ''; // Reset the file input
+                return;
+            }
+        });
+    }
+    imagefilevalidator('fileconstraint1');
+
+    // applyFileValidation('fileconstraint10');
+    applyFileValidation('fileconstraint9')
+    applyFileValidation('fileconstraint11')
+    const fileInputIds = [
+         'fileconstraint2', 'fileconstraint3', 'fileconstraint4', 'fileconstraint5', 
+        'fileconstraint6', 'fileconstraint7', 'fileconstraint8', 'mergedfileconstraint'];
+
+    applyFileValidation1('mergedfileconstraint');
+    // Apply file size validation to multiple file input fields by iterating through the IDs
+    fileInputIds.forEach(function(id) {
+        applyFileValidation(id);    
+    });
+
+
+
+
+
+    /*const form = document.getElementById('ADM_form');
+
+    form.addEventListener('submit', function(event) {
+        const test_name = document.getElementById('test_name').value;
+        const hall_ticket_number = document.getElementById('hall_ticket_number').value;
+        const test_date = document.getElementById('test_date').value;
+        const rank_obtained = document.getElementById('rank_obtained').value;
+        const rank_card = document.getElementById('rank_card').value;
+    
+        if (test_name !== 'Other') {
+            if (hall_ticket_number !== '' && test_date !== '' && rank_obtained !== '') {
+                return true;
+            } else {
+                event.preventDefault();
+                alert('Please enter all fields.');
+                return false;
+            }
+        } else {
+            const j_hall_ticket_number = document.getElementById('j_hall_ticket_number').value;
+            const j_test_date = document.getElementById('j_test_date').value;
+            const j_rank_obtained = document.getElementById('j_rank_obtained').value;
+            const j_rank_card = document.getElementById('j_rank_card').value;
+    
+            if (j_hall_ticket_number !== '' && j_test_date !== '' && j_rank_obtained !== '') {
+                return true;
+            } else {
+                event.preventDefault();
+                alert('Please enter all JEE MAINS fields.');
+                return false;
+            }
+        }
+    });*/
+    
+   
+    function handleTestDate() {
+        const testDateInput = document.getElementById('test_date');
+        const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+        
+        if (testDateInput.value === '' || testDateInput.value === currentDate) {
+            testDateInput.value = 'NA'; // Replace test date with 'NA' if it's empty or matches the current date
+        }
+    }
+    
+
+    
+    function validateForm(event) {
+        event.preventDefault(); // Prevent form submission for now
+    
+        const entranceTestName = document.getElementById('test_name').value;
+        const hallTicketNumber = document.getElementById('hall_ticket_number').value;
+        const testDate = document.getElementById('test_date').value;
+        const rankObtained = document.getElementById('rank_obtained').value;
+        const fileUpload = document.getElementById('fileconstraint9').value;
+
+        const J_entranceTestName = document.getElementById('j_test_name').value;
+        const J_hallTicketNumber = document.getElementById('j_hall_ticket_number').value;
+        const J_testDate = document.getElementById('j_test_date').value;
+        const J_rankObtained = document.getElementById('j_rank_obtained').value;
+        const J_fileUpload = document.getElementById('fileconstraint11').value;
+
+        const entranceTestDetailsFilled = entranceTestName !== '' && hallTicketNumber !== '' && testDate !== '' && rankObtained !== '' && fileUpload !== '';
+        const jeeTestDetailsFilled = J_entranceTestName !== '' && J_hallTicketNumber !== '' && J_testDate !== '' && J_rankObtained !== '' && J_fileUpload !== '';
+    
+    
+        if (!entranceTestDetailsFilled && !jeeTestDetailsFilled) {
+            alert('Please fill in at least one set of test details.');
+            return;
+        }
+    
+        // If the form has at least one set of test details filled, submit the form
+        document.getElementById('ADM_form').submit();
+    }
+</script>
+                       
+
+
+
+
+<script src="{% static 'js/bootstrap.js' %}" ></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" ></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}" ></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}" ></script>
+    <script src="{% static 'js/bootstrap.esm.js' %}" ></script>
+    <script src="{% static 'js/bootstrap.esm.min.js' %}" ></script>
 </body>
 </html>
 
+    <!--
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.rtl.min.css' %}">
+    -->
