@@ -9,8 +9,8 @@
 
     <style>
         .required-error {
-            border: 1px solid red;
-            box-shadow: 0 0 5px red; /* Adding a red shadow */
+            border: 0.3px solid red;
+            box-shadow: 0 0 3px red; /* Adding a red shadow */
 
         }
         
@@ -620,7 +620,7 @@
     <div class="col-md-6 ">
         <label for="ssc_exam_type" class="control-label   small">Test Name:</label>
         <select name="e_test_name" id="test_name" class="form-select">
-            <option selected disabled value="">Select</option>
+            <option selected value="">Select</option>
             <option value="A.P EAMCET">A.P EAMCET</option>  
             <option value="A.P ECET">A.P ECET</option>
             <option value="Other">Other</option>
@@ -667,7 +667,7 @@
         <div class="col-md-6">
             <label for="ssc_exam_type" class="control-label small">Test Name:</label>
             <select name="j_test_name" id="j_test_name" class="form-select " >
-                <option selected disabled value="">Select</option>
+                <option selected value="">Select</option>
                 <option value="SSC">JEE MAIN</option> 
             </select>
         </div>
@@ -794,7 +794,7 @@
         var mobileError = input.parentNode.nextElementSibling; // Get the next sibling (small element) after the parent node
 
         if (mobileNumber.length !== 10) {
-            mobileError.textContent = 'Mobile number must be 10 digitssssssssssss';
+            mobileError.textContent = 'Mobile number must be 10 digits';
             return false;
         } else {
             mobileError.textContent = '';
@@ -1097,15 +1097,17 @@ function updateStatus(value) {
         const jeeTestDetailsFilled = J_entranceTestName !== '' && J_hallTicketNumber !== '' && J_testDate !== '' && J_rankObtained !== '' && J_fileUpload !== '';
     
     
-        if ((entranceTestDetailsFilled && jeeTestDetailsFilled) || (entranceTestDetailsFilled || jeeTestDetailsFilled)) {
-            document.getElementById('ADM_form').submit();
-            return;
+        if ((entranceTestName || hallTicketNumber || testDate || rankObtained || fileUpload) &&
+        !(entranceTestName && hallTicketNumber && testDate && rankObtained && fileUpload)) {
+        alert("Please fill in all Entrance Test details.");
+        return;
+    }
 
-        }
-        else{
-            alert('Please fill in at least one set of test details.');
-            return;
-        }
+    if ((J_entranceTestName || J_hallTicketNumber || J_testDate || J_rankObtained || J_fileUpload) &&
+        !(J_entranceTestName && J_hallTicketNumber && J_testDate && J_rankObtained && J_fileUpload)) {
+        alert("Please fill in all JEE Mains Test details.");
+        return;
+    }
     
 
     }
